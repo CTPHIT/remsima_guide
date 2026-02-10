@@ -1,66 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Remsima_guide</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Remsima Guide</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    html, body {
-      width: 100%;
-      height: 100%;
-      margin: 0;
-      padding: 0;
-    }
+<style>
+  /* reset */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
-    body {
-      display: flex;
-      flex-direction: column;
-      background-color: #000;
-      overflow: hidden;
-    }
+  html, body {
+    width: 100%;
+    height: 100%;
+  }
 
-    #videoPlayer {
-      flex: 1 1 auto;          /* 남은 영역만 차지 */
-      width: 100%;
-      object-fit: contain;
-      background-color: #000;
-    }
+  body {
+    display: flex;
+    flex-direction: column;
+    background: #000;
+  }
 
-    .disclaimer {
-      flex: 0 0 auto;          /* 절대 줄어들지 않음 */
-      width: 100%;
-      margin: 0;
-      padding: 10px;
-      text-align: center;
-      background-color: #fff;
-      font-size: 14px;
-      font-weight: bold;
-      box-sizing: border-box;
-    }
-  </style>
+  #videoPlayer {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* 화면 비율 유지하면서 최대치 채움 */
+    flex: 1 1 auto;       /* disclaimer 제외한 영역 채우기 */
+    background: #000;
+  }
+
+  .disclaimer {
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    background: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    flex-shrink: 0;       /* 절대 줄어들지 않음 */
+  }
+</style>
 </head>
 
 <body>
-  <video id="videoPlayer" autoplay muted controls playsinline></video>
+  <video id="videoPlayer" autoplay muted controls playsinline>
+    <source src="https://remsima-avi.s3.ap-northeast-2.amazonaws.com/remsima_pen_guide.mp4" type="video/mp4">
+  </video>
 
   <p class="disclaimer">
     ※ “당사는 의료기관이 아니며, 해당 영상은 치료 목적이 아닌 보조적 건강관리 서비스를 목적으로 합니다.”<br>
     환자는 별도의 보건의료전문가로부터 교육을 받아야 합니다.
   </p>
-
-  <script>
-    (function () {
-      const videoUrl = 'https://remsima-avi.s3.ap-northeast-2.amazonaws.com/remsima_pen_guide.mp4';
-      const video = document.getElementById('videoPlayer');
-
-      const source = document.createElement('source');
-      source.src = videoUrl;
-      source.type = 'video/mp4';
-
-      video.appendChild(source);
-      video.load();
-    })();
-  </script>
 </body>
 </html>
